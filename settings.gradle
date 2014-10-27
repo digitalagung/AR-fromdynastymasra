@@ -1,0 +1,4 @@
+rootProject.name = 'YogyakartaTour'
+include ':YogyakartaTourMobile'
+include ':YogyakartaTourWeb'
+
