@@ -20,12 +20,13 @@ public class ApplicationInitializer implements WebApplicationInitializer {
 
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
-        AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
-        context.register(WebConfigApplicationContext.class);
-        context.setDisplayName("Yogyakarta Tour");
-        servletContext.addListener(new ContextLoaderListener(context));
+        AnnotationConfigWebApplicationContext rootContext = new AnnotationConfigWebApplicationContext();
+        rootContext.register(WebConfigApplicationContext.class);
+        rootContext.setDisplayName("Yogyakarta Tour");
 
-        ServletRegistration.Dynamic dispatcher = servletContext.addServlet("dispatcher", new DispatcherServlet(context));
+        servletContext.addListener(new ContextLoaderListener(rootContext));
+
+        ServletRegistration.Dynamic dispatcher = servletContext.addServlet("dispatcher", new DispatcherServlet(rootContext));
         dispatcher.setLoadOnStartup(1);
         dispatcher.addMapping("/");
     }
