@@ -5,4 +5,4 @@ Skripsi Rancang Bangun Sistem Layanan Berbasis Lokasi Informasi Pariwisata dan S
 
 Applikasi Android dbuat dengan Spring Rest Template Android, Maps, Augmented Reality, Jackson(Gradle)
 
-Applikasi Web dibuat dengan Java Spring Framework Apache Hadoop, HBase, MySQL, Jackson, JPA, Hibernate, Thymeleaf(Gradle)
+Applikasi Web dibuat dengan Java, Spring Boot, Apache Hadoop, HBase, MySQL, Jackson, JPA, Hibernate, Thymeleaf, PrimeUI(Gradle)
