@@ -6,7 +6,6 @@ buildscript {
         appName = 'YogyakartaTourWeb'
         appVersion = '1.0 Beta'
         springBootVersion = '1.+'
-        bootThymeleafVersion = '1.+'
         mysqlVersion = '5.+'
         log4jVersion = '1.+'
     }
@@ -32,7 +31,9 @@ repositories {
 
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
-    compile("org.springframework.boot:spring-boot-starter-thymeleaf:${bootThymeleafVersion}")
+    compile("org.springframework.boot:spring-boot-starter-thymeleaf:${springBootVersion}")
+    compile("org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}")
+    runtime("mysql:mysql-connector-java:${mysqlVersion}")
 }
 
 task wrapper(type: Wrapper) {
