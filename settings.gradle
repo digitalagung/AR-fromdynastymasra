@@ -1,4 +1,1 @@
-rootProject.name = 'YogyakartaTour'
-include ':YogyakartaTourMobile'
-include ':YogyakartaTourWeb'
-
+include ':Server', ':Server:Web'
