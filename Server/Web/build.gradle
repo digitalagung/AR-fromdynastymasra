@@ -7,7 +7,6 @@ buildscript {
         appVersion = '1.0 Beta'
         springBootVersion = '1.+'
         mysqlVersion = '5.+'
-        log4jVersion = '1.+'
     }
     repositories {
         mavenLocal()
@@ -25,6 +24,11 @@ jar {
     version = "${appVersion}"
 }
 
+war {
+    baseName = "${appName}"
+    version = "${appVersion}"
+}
+
 repositories {
     mavenCentral()
 }
@@ -32,6 +36,7 @@ repositories {
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
     compile("org.springframework.boot:spring-boot-starter-thymeleaf:${springBootVersion}")
+    compile("org.springframework.boot:spring-boot-starter-security:${springBootVersion}")
     compile("org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}")
     runtime("mysql:mysql-connector-java:${mysqlVersion}")
 }

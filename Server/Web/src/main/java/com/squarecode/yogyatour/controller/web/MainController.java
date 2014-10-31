@@ -1,5 +1,7 @@
 package com.squarecode.yogyatour.controller.web;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,11 +16,25 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 public class MainController {
+    private static final Logger LOGGER = LoggerFactory.getLogger(MainController.class);
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String getHomePage(ModelMap modelMap) {
-
+        LOGGER.info("request show home page");
+        modelMap.addAttribute("message", "Welcome Test Spring Boot Thymeleaf");
         return "home";
     }
 
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String getLoginPage(ModelMap modelMap) {
+        LOGGER.info("request show login page");
+        return "login";
+    }
+
+    @RequestMapping(value = "/denied", method = RequestMethod.GET)
+    public String getDeniedPage(ModelMap modelMap) {
+        LOGGER.info("request show denied page");
+        modelMap.addAttribute("message", "Denied Page");
+        return "denied";
+    }
 }

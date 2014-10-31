@@ -71,3 +71,8 @@ gen-external-apklibs
 # jasper config #
 #################
 *.jasper
+
+############
+# log file #
+############
+*.log
