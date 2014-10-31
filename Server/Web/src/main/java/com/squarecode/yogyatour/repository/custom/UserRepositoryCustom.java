@@ -1,4 +1,4 @@
-package com.squarecode.yogyatour.repository;
+package com.squarecode.yogyatour.repository.custom;
 
 import com.squarecode.yogyatour.domain.Role;
 import com.squarecode.yogyatour.domain.User;

@@ -1,8 +1,8 @@
-package com.squarecode.yogyatour.repository.impl;
+package com.squarecode.yogyatour.repository.custom.impl;
 
 import com.squarecode.yogyatour.domain.Role;
 import com.squarecode.yogyatour.domain.User;
-import com.squarecode.yogyatour.repository.UserRepositoryCustom;
+import com.squarecode.yogyatour.repository.custom.UserRepositoryCustom;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Repository;
@@ -21,24 +21,22 @@ import java.util.List;
  */
 @Repository
 @Transactional
-public class UserRepositoryCustomImpl implements UserRepositoryCustom {
+public class UserRepositoryImpl implements UserRepositoryCustom {
 
     @PersistenceContext
     protected EntityManager entityManager;
-    @Autowired
-    private BCrypt bCrypt;
 
     @Override
     public String encodePassword(String plain, String salt) {
-        return bCrypt.hashpw(plain, salt);
+        return BCrypt.hashpw(plain, salt);
     }
 
     @Override
     public User create(String username, String plainPassword) {
         User user = new User(username);
 
-        user.setSalt(bCrypt.gensalt(12));
-        user.setPassword(bCrypt.hashpw(plainPassword, user.getSalt()));
+        user.setSalt(BCrypt.gensalt(12));
+        user.setPassword(BCrypt.hashpw(plainPassword, user.getSalt()));
         user.setEnabled(true);
         entityManager.persist(user);
         return user;
@@ -50,8 +48,8 @@ public class UserRepositoryCustomImpl implements UserRepositoryCustom {
 
         user.setUsername(username);
         user.setEnabled(true);
-        user.setSalt(bCrypt.gensalt(12));
-        user.setPassword(bCrypt.hashpw(plainPassword, user.getSalt()));
+        user.setSalt(BCrypt.gensalt(12));
+        user.setPassword(BCrypt.hashpw(plainPassword, user.getSalt()));
         user.setAuthorities(roles);
         entityManager.persist(user);
         return user;
