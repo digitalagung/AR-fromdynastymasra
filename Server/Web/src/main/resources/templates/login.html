@@ -1,19 +1,25 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head lang="en">
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
-    <link rel="stylesheet" href="../../production/jquery-ui.min.css" th:href="@{/production/jquery-ui.min.css}"/>
-    <link rel="stylesheet" href="../../production/primeui-1.1-min.css" th:href="@{/production/primeui-1.1-min.css}"/>
-    <link rel="stylesheet" href="../../themes/delta/theme.css" th:href="@{/themes/delta/theme.css}"/>
-    <script type="text/javascript" src="../../production/external/jquery/jquery.js" th:src="@{/production/external/jquery/jquery.js}"></script>
-    <script type="text/javascript" src="../../production/jquery-ui.min.js" th:src="@{/production/jquery-ui.min.js}"></script>
-    <script type="text/javascript" src="../../production/primeui-1.1-min.js" th:src="@{/production/primeui-1.1-min.js}"></script>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" href="../static/production/jquery-ui.min.css" th:href="@{/production/jquery-ui.min.css}"/>
+    <link rel="stylesheet" type="text/css" href="../static/production/primeui-1.1-min.css" th:href="@{/production/primeui-1.1-min.css}"/>
+    <link rel="stylesheet" type="text/css" href="../static/themes/aristo/theme.css" th:href="@{/themes/aristo/theme.css}"/>
+    <script rel="javascript" type="text/javascript" src="../static/production/external/jquery/jquery.js" th:src="@{/production/external/jquery/jquery.js}"></script>
+    <script rel="javascript" type="text/javascript" src="../static/production/jquery-ui.min.js" th:src="@{/production/jquery-ui.min.js}"></script>
+    <script rel="javascript" type="text/javascript" src="../static/production/primeui-1.1-min.js" th:src="@{/production/primeui-1.1-min.js}"></script>
+    <script type="text/javascript">
+        $(function() {
+            $('#error_login').puigrowl();
+            $('#error_login').puigrowl('show', [{severity: 'warn', summary: 'Login Failed', detail: 'Invalid Username or Password!'}]);
+        });
+    </script>
     <title>Yogyakarta Tour</title>
 </head>
 <body>
 <div th:if="${param.error}">
-    Invalid username and password.
+    <div th:id="error_login" />
 </div>
 <div th:if="${param.logout}">
     You have been logged out.
