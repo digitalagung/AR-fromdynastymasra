@@ -63,7 +63,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.formLogin().usernameParameter("username").passwordParameter("password").failureUrl("/login?error").defaultSuccessUrl("/").successHandler(customAuthenticationSuccessHandler)
                 .loginPage("/login").permitAll().and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login").permitAll().invalidateHttpSession(true)
-                .and().authorizeRequests().antMatchers("/api/**").permitAll().antMatchers("/*").hasAnyRole("USER", "ADMIN").antMatchers("/admin/**").hasRole("ADMIN").and().authorizeRequests()
+                .and().authorizeRequests().antMatchers("/api/**", "/images/**").permitAll().antMatchers("/*").hasAnyRole("USER", "ADMIN").antMatchers("/admin/**").hasRole("ADMIN").and().authorizeRequests()
                 .anyRequest().authenticated().and().exceptionHandling().accessDeniedPage("/denied");
     }
 
