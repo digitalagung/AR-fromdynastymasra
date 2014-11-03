@@ -1,6 +1,7 @@
 package com.squarecode.yogyatour.config;
 
 import com.squarecode.yogyatour.controller.CustomAuthenticationSuccessHandler;
+import com.squarecode.yogyatour.controller.CustomLogoutSuccessHandler;
 import com.squarecode.yogyatour.service.SecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -38,6 +39,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     private CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler;
 
+    @Autowired
+    private CustomLogoutSuccessHandler customLogoutSuccessHandler;
+
     @Bean
     public ReflectionSaltSource saltSource() {
         ReflectionSaltSource saltSource = new ReflectionSaltSource();
@@ -61,10 +65,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.formLogin().usernameParameter("username").passwordParameter("password").failureUrl("/login?error").defaultSuccessUrl("/").successHandler(customAuthenticationSuccessHandler)
+        http.formLogin().usernameParameter("j_username").passwordParameter("j_password").failureUrl("/login?error").defaultSuccessUrl("/").successHandler(customAuthenticationSuccessHandler)
                 .loginPage("/login").permitAll().and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login").permitAll().invalidateHttpSession(true)
-                .and().authorizeRequests().antMatchers("/api/**", "/images/**").permitAll().antMatchers("/*").hasAnyRole("USER", "ADMIN").antMatchers("/admin/**").hasRole("ADMIN").and().authorizeRequests()
-                .anyRequest().authenticated().and().exceptionHandling().accessDeniedPage("/denied");
+                .logoutSuccessHandler(customLogoutSuccessHandler).and().authorizeRequests().antMatchers("/api/**", "/images/**", "/css/**", "/js/**").permitAll().antMatchers("/*").hasAnyRole("USER", "ADMIN")
+                .antMatchers("/admin/**").hasRole("ADMIN").and().authorizeRequests().anyRequest().authenticated().and().exceptionHandling().accessDeniedPage("/denied");
     }
 
     @Override
@@ -74,6 +78,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/production/**", "/themes/**");
+        web.ignoring().antMatchers("/production/**", "/themes/**", "/css/**", "/js/**");
     }
 }

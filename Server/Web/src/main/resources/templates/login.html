@@ -1,38 +1,12 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <link rel="stylesheet" type="text/css" href="../static/production/jquery-ui.min.css" th:href="@{/production/jquery-ui.min.css}"/>
-        <link rel="stylesheet" type="text/css" href="../static/production/primeui-1.1-min.css" th:href="@{/production/primeui-1.1-min.css}"/>
-        <link rel="stylesheet" type="text/css" href="../static/themes/aristo/theme.css" th:href="@{/themes/aristo/theme.css}"/>
-        <script rel="javascript" type="text/javascript" src="../static/production/external/jquery/jquery.js" th:src="@{/production/external/jquery/jquery.js}"></script>
-        <script rel="javascript" type="text/javascript" src="../static/production/jquery-ui.min.js" th:src="@{/production/jquery-ui.min.js}"></script>
-        <script rel="javascript" type="text/javascript" src="../static/production/primeui-1.1-min.js" th:src="@{/production/primeui-1.1-min.js}"></script>
-        <style type="text/css">
-            body {
-                margin: auto;
-                width: 100%;
-                background-color: #000000;
-            }
-            .ui-widget, .ui-widget .ui-widget {
-                font-size: 70% !important;
-            }
-        </style>
-        <script type="text/javascript">
-            $(function() {
-                $('#error_login').puigrowl();
-                $('#error_login').puigrowl('show', [{severity: 'warn', summary: 'Login Failed', detail: 'Invalid Username or Password!'}]);
-                $('#logout').puigrowl();
-                $('#logout').puigrowl('show', [{severity: 'info', summary: 'Logout', detail: 'You Have Been Logged Out'}]);
-                $('#password').puipassword();
-                $('#button_Login').puibutton({icon: 'ui_icon_key'})
-                $('#input_username').puiinputtext();
-            });
-        </script>
-        <title>Yogyakarta Tour</title>
+        <meta charset="utf-8" />
+        <title>Login</title>
+        <object th:include="fragment/fragment :: header" th:remove="tag"/>
     </head>
-    <body width="100%">
+    <body>
         <div th:if="${param.error}">
             <div th:id="error_login" />
         </div>
@@ -40,9 +14,10 @@
             <div th:id="logout"/>
         </div>
         <form th:action="@{/login}" method="post">
-            <div><label> User Name : <input th:id="input_username" type="text" name="username"/> </label></div>
-            <div><label> Password: <input th:id="password" type="password" name="password"/> </label></div>
+            <div><label> User Name : <input th:id="input_username" type="text" name="j_username"/> </label></div>
+            <div><label> Password: <input th:id="password" type="password" name="j_password"/> </label></div>
             <div><input th:id="button_login" type="submit" value="Login"/></div>
         </form>
+    <div th:replace="fragment/fragment :: footer_login"><h3>login</h3></div>
     </body>
 </html>

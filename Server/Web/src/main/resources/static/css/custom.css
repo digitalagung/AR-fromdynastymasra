@@ -1,0 +1,11 @@
+body {
+    margin: auto;
+    width: 100%;
+    background-color: #ffff38;
+}
+.ui-widget, .ui-widget .ui-widget {
+    font-size: 70% !important;
+}
+#ui-widget, #ui-widget #ui-widget {
+    font-size: 70% !important;
+}
