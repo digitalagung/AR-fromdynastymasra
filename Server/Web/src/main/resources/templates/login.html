@@ -1,23 +1,36 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <meta charset="utf-8" />
-        <title>Login</title>
-        <object th:include="fragment/fragment :: header" th:remove="tag"/>
-    </head>
-    <body>
+<head lang="en">
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Login</title>
+    <object th:include="fragment/fragment :: header" th:remove="tag"/>
+</head>
+<body>
+    <div class="container" style="text-align:center">
         <div th:if="${param.error}">
-            <div th:id="error_login" />
+            <div th:id="error_login"/>
         </div>
         <div th:if="${param.logout}">
             <div th:id="logout"/>
         </div>
-        <form th:action="@{/login}" method="post">
-            <div><label> User Name : <input th:id="input_username" type="text" name="j_username"/> </label></div>
-            <div><label> Password: <input th:id="password" type="password" name="j_password"/> </label></div>
-            <div><input th:id="button_login" type="submit" value="Login"/></div>
-        </form>
-    <div th:replace="fragment/fragment :: footer_login"><h3>login</h3></div>
-    </body>
+        <div class="row">
+            <div class="col-md-offset-4 col-md-4 baru-login">
+                <br/>
+                <img src="../../static/images/ljogja.png" th:src="@{/images/ljogja.png}" width="300px" height="75px"/>
+                <br/><br/>
+                <form role="form" th:action="@{/login}" method="post" class="login">
+                    <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
+                    <input type="text" class="form-control" name="j_username" placeholder="Username"/>
+                    <span class="input-group-addon"><i class="fa fa-unlock-o fa-fw"></i></span>
+                    <input th:id="password" type="password" class="form-control" name="j_password" placeholder="Password"/>
+                    <button th:id="button_login" type="submit" class="btn btn-success btn-block" value="Login"><i class="fa fa-sign-in"></i> Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div th:replace="fragment/fragment :: footer-login"></div>
+</body>
 </html>

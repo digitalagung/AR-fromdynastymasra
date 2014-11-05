@@ -5,18 +5,30 @@
         <link rel="stylesheet" type="text/css" href="../../static/production/jquery-ui.min.css" th:href="@{/production/jquery-ui.min.css}"/>
         <link rel="stylesheet" type="text/css" href="../../static/production/primeui-1.1-min.css" th:href="@{/production/primeui-1.1-min.css}"/>
         <link rel="stylesheet" type="text/css" href="../../static/themes/aristo/theme.css" th:href="@{/themes/aristo/theme.css}"/>
+        <link rel="stylesheet" type="text/css" href="../../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}"/>
+        <link rel="stylesheet" type="text/css" href="../../static/css/font-awesome.min.css" th:href="@{/css/font-awesome.min.css}"/>
+        <link rel="stylesheet" type="text/css" href="../../static/css/barukamu.css" th:href="@{/css/barukamu.css}"/>
         <script rel="javascript" type="text/javascript" src="../../static/production/external/jquery/jquery.js" th:src="@{/production/external/jquery/jquery.js}"></script>
         <script rel="javascript" type="text/javascript" src="../../static/production/jquery-ui.min.js" th:src="@{/production/jquery-ui.min.js}"></script>
         <script rel="javascript" type="text/javascript" src="../../static/production/primeui-1.1-min.js" th:src="@{/production/primeui-1.1-min.js}"></script>
+        <script rel="javascript" type="text/javascript" src="../../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+        <script rel="javascript" type="text/javascript" src="../../static/js/holder.js" th:src="@{/js/holder.js}"></script>
+        <script rel="javascript" type="text/javascript" src="../../static/js/highcharts.js" th:src="@{/js/highcharts.js}"></script>
+        <script rel="javascript" type="text/javascript" src="../../static/js/barukamu.js" th:src="@{/js/barukamu.js}"></script>
         <link rel="stylesheet" type="text/css" href="../../static/css/custom.css" th:href="@{/css/custom.css}"/>
-        <script type="text/javascript" src="../../static/js/custom.js" th:src="@{/js/custom.js}"></script>
+        <script rel="javascript" type="text/javascript" src="../../static/js/custom.js" th:src="@{/js/custom.js}"></script>
     </head>
     <body>
-        <footer th:fragment="footer_login">
-            <h3>test</h3>
-        </footer>
-        <footer th:fragment="footer_main">
-            <h3>main</h3>
-        </footer>
+
+    <div th:fragment="footer-login" class="footer-login">
+        <div style="text-align: center">
+            <p class="text-muted">Copyright &copy; 2014, Squarecode. All rights reserved.</p>
+        </div>
+    </div>
+    <div th:fragment="footer-main" class="footer-main">
+        <div style="text-align: center">
+            
+        </div>
+    </div>
     </body>
 </html>

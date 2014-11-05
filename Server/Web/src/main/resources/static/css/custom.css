@@ -1,11 +1,28 @@
+html {
+    position: relative;
+    min-width: 100%;
+    min-height: 100%;
+}
+
 body {
-    margin: auto;
+    margin-bottom: 50px;
+}
+
+.footer-login {
+    position: absolute;
+    bottom: 0;
     width: 100%;
-    background-color: #ffff38;
+    height: 50px;
 }
+
+.footer-main {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 30px;
+}
+
 .ui-widget, .ui-widget .ui-widget {
-    font-size: 70% !important;
+    font-size: 90% !important;
 }
-#ui-widget, #ui-widget #ui-widget {
-    font-size: 70% !important;
-}
+

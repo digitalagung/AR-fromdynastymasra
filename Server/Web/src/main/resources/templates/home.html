@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="utf-8" />
-    <title>Yogyakarta Tour</title>
+<head lang="en">
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Mubeng Jogja</title>
     <object th:include="fragment/fragment :: header" th:remove="tag"/>
 </head>
 <body>
 <h1 align="center" th:text="${message}">Test ThymeLeaf</h1>
-<div th:replace="fragment/fragment :: footer_main"><h3>main</h3></div>
+
+<div th:replace="fragment/fragment :: footer"></div>
 </body>
 </html>
