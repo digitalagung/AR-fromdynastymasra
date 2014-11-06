@@ -37,4 +37,17 @@ public class MainController {
         modelMap.addAttribute("message", "Denied Page");
         return "denied";
     }
+
+    @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
+    public String getDashboard(ModelMap modelMap) {
+        LOGGER.info("request show dashboard page");
+        modelMap.addAttribute("message", "test from controller");
+        return "fragment/dashboard";
+    }
+
+    @RequestMapping(value = "/admin/user", method = RequestMethod.GET)
+    public String getAdminPage() {
+        LOGGER.info("request show admin user page");
+        return "fragment/admin";
+    }
 }
