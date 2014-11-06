@@ -22,7 +22,7 @@ public class MainController {
     public String getHomePage(ModelMap modelMap) {
         LOGGER.info("request show home page");
         modelMap.addAttribute("message", "Welcome Test Spring Boot Thymeleaf");
-        return "home";
+        return "index";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)

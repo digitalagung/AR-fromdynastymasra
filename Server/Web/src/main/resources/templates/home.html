@@ -5,11 +5,11 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>Mubeng Jogja</title>
+    <title>Yogyakarta Tour</title>
     <object th:include="fragment/fragment :: header" th:remove="tag"/>
 </head>
 <body>
-<h1 align="center" th:text="${message}">Test ThymeLeaf</h1>
+<div th:replace="fragment/fragment :: main-user"></div>
 
 <div th:replace="fragment/fragment :: footer"></div>
 </body>

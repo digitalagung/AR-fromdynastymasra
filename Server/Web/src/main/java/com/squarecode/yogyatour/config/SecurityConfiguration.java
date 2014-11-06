@@ -67,8 +67,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.formLogin().usernameParameter("j_username").passwordParameter("j_password").failureUrl("/login?error").defaultSuccessUrl("/").successHandler(customAuthenticationSuccessHandler)
                 .loginPage("/login").permitAll().and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login").permitAll().invalidateHttpSession(true)
-                .logoutSuccessHandler(customLogoutSuccessHandler).and().authorizeRequests().antMatchers("/api/**", "/images/**", "/css/**", "/js/**", "/fonts/**", "/favicon.ico").permitAll().antMatchers("/*")
-                .hasAnyRole("USER", "ADMIN").antMatchers("/admin/**").hasRole("ADMIN").and().authorizeRequests().anyRequest().authenticated().and().exceptionHandling().accessDeniedPage("/denied");
+                .deleteCookies("JSESSIONID").logoutSuccessHandler(customLogoutSuccessHandler).and().authorizeRequests().antMatchers("/api/**", "/images/**", "/css/**", "/js/**", "/fonts/**", "/production/**", "/favicon.ico")
+                .permitAll().antMatchers("/*").hasAnyRole("USER", "ADMIN").antMatchers("/admin/**").hasRole("ADMIN").and().authorizeRequests().anyRequest().authenticated().and().exceptionHandling()
+                .accessDeniedPage("/denied");
     }
 
     @Override

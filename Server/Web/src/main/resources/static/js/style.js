@@ -4,5 +4,4 @@ $(function() {
     $('#logout').puigrowl();
     $('#logout').puigrowl('show', [{severity: 'info', summary: 'Logout', detail: 'You Have Been Logged Out'}]);
     $('#password').puipassword();
-    $('#button_Login').puibutton({icon: 'ui_icon_key'})
 });
