@@ -5,7 +5,7 @@ buildscript {
     ext {
         appName = 'YogyakartaTourWeb'
         appVersion = '1.0 Beta'
-        springBootVersion = '1.+'
+        springBootVersion = '1.2.+'
         mysqlVersion = '5.+'
     }
     repositories {
@@ -30,7 +30,8 @@ war {
 }
 
 repositories {
-    mavenCentral()
+    maven { url "http://repo.spring.io/snapshot" }
+    maven { url "http://repo.spring.io/milestone" }
 }
 
 dependencies {

@@ -68,13 +68,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.formLogin().usernameParameter("j_username").passwordParameter("j_password").failureUrl("/login?error").defaultSuccessUrl("/").successHandler(customAuthenticationSuccessHandler)
                 .loginPage("/login").permitAll().and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login").permitAll().invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID").logoutSuccessHandler(customLogoutSuccessHandler).and().authorizeRequests().antMatchers("/api/**", "/images/**", "/css/**", "/js/**", "/fonts/**", "/production/**", "/favicon.ico")
-                .permitAll().antMatchers("/*").hasAnyRole("USER", "ADMIN").antMatchers("/admin/**").hasRole("ADMIN").and().authorizeRequests().anyRequest().authenticated().and().exceptionHandling()
+                .permitAll().antMatchers("/*/").hasAnyRole("USER", "ADMIN").antMatchers("/admin/**").hasRole("ADMIN").and().authorizeRequests().anyRequest().authenticated().and().exceptionHandling()
                 .accessDeniedPage("/denied");
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.authenticationProvider(daoAuthenticationProvider()).inMemoryAuthentication().withUser("admin").password("admin").roles("ADMIN");
+        auth.authenticationProvider(daoAuthenticationProvider()).inMemoryAuthentication().withUser("admin").password("admin").roles("ADMIN").and().withUser("user").password("user").roles("USER");
     }
 
     @Override

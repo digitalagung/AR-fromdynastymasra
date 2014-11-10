@@ -155,7 +155,7 @@
         <div id="sidebar-left" class="col-xs-2 col-sm-2">
             <ul class="nav main-menu">
                 <li>
-                    <a href="/" th:href="@{/}" class="active ajax-link">
+                    <a href="fragment/dashboard" th:href="@{/dashboard}" class="active ajax-link">
                         <i class="fa fa-dashboard"></i>
                         <span class="hidden-xs">Dashboard</span>
                     </a>
@@ -326,7 +326,8 @@
                         <span class="hidden-xs">Users</span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="ajax-link" href="fragment/admin" th:href="@{/admin/user}">New User</a></li>
+                        <li><a class="ajax-link" href="fragment/user" th:href="@{/admin/user}">New User</a></li>
+                        <li><a class="ajax-link" href="fragment/location" th:href="@{/admin/location}">Location</a></li>
                     </ul>
                 </li>
             </ul>

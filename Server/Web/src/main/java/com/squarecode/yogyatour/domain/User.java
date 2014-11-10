@@ -8,8 +8,10 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.Size;
@@ -38,6 +40,11 @@ public class User implements UserDetails {
     private String password;
     @Column(name = "USER_SALT", nullable = false)
     private String salt;
+    @Column(name = "USER_EMAIL")
+    @Size(max = 50, min = 1)
+    private String email;
+    @Column(name = "USER_PHONE")
+    private Integer phone;
     @Transient
     private boolean accountNonExpired = true;
     @Transient
@@ -49,6 +56,9 @@ public class User implements UserDetails {
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "USER_ROLE")
     private Collection<Role> authorities;
+    @OneToOne
+    @JoinColumn(name = "USER_ADDRESS", nullable = false)
+    private Country country;
 
     public User() {
     }
@@ -56,8 +66,6 @@ public class User implements UserDetails {
     public User(String username) {
         this.username = username;
     }
-
-
 
     public void setUsername(String username) {
         this.username = username;
@@ -85,6 +93,38 @@ public class User implements UserDetails {
 
     public void setCredentialsNonExpired(boolean credentialsNonExpired) {
         this.credentialsNonExpired = credentialsNonExpired;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Integer getPhone() {
+        return phone;
+    }
+
+    public void setPhone(Integer phone) {
+        this.phone = phone;
+    }
+
+    public Country getCountry() {
+        return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
     }
 
     public void setEnabled(boolean enabled) {

@@ -48,6 +48,12 @@ public class MainController {
     @RequestMapping(value = "/admin/user", method = RequestMethod.GET)
     public String getAdminPage() {
         LOGGER.info("request show admin user page");
-        return "fragment/admin";
+        return "fragment/user";
+    }
+
+    @RequestMapping(value = "/admin/location", method = RequestMethod.GET)
+    public String getLocationPage() {
+        LOGGER.info("request show location page");
+        return "fragment/location";
     }
 }

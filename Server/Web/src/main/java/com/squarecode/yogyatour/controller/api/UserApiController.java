@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
  * Blogspot : dynastymasra.wordpress.com | dynastymasra.blogspot.com
  */
 @RestController
-@RequestMapping("/api")
 public class UserApiController {
     private static final Logger LOGGER = LoggerFactory.getLogger(UserApiController.class);
 
