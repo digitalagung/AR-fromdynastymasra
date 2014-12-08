@@ -5,6 +5,7 @@ import com.squarecode.yogyatour.repository.custom.UserRepositoryCustom;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import java.util.List;
 
@@ -15,6 +16,7 @@ import java.util.List;
  * LinkedIn : http://www.linkedin.com/in/dynastymasra
  * Blogspot : dynastymasra.wordpress.com | dynastymasra.blogspot.com
  */
+@RepositoryRestResource(collectionResourceRel = "user", path = "user")
 public interface UserRepository extends PagingAndSortingRepository<User, Long>, UserRepositoryCustom {
 
     @Query("SELECT u FROM User u WHERE u.username=:username")
