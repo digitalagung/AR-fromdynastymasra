@@ -2,6 +2,7 @@ package com.squarecode.yogyatour.repository;
 
 import com.squarecode.yogyatour.domain.User;
 import com.squarecode.yogyatour.repository.custom.UserRepositoryCustom;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
@@ -17,9 +18,9 @@ import java.util.List;
  * Blogspot : dynastymasra.wordpress.com | dynastymasra.blogspot.com
  */
 @RepositoryRestResource(collectionResourceRel = "user", path = "user")
-public interface UserRepository extends PagingAndSortingRepository<User, Long>, UserRepositoryCustom {
+public interface UserRepository extends JpaRepository<User, Long>, UserRepositoryCustom {
 
-    @Query("SELECT u FROM User u WHERE u.username=:username")
+    @Query("SELECT u FROM User u WHERE u.username = :username")
     public User findByUsername(@Param("username") String username);
 
     @Query("SELECT u FROM User u")

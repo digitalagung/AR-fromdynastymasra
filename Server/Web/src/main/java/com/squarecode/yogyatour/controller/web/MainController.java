@@ -50,10 +50,4 @@ public class MainController {
         LOGGER.info("request show admin user page");
         return "fragment/user";
     }
-
-    @RequestMapping(value = "/admin/location", method = RequestMethod.GET)
-    public String getLocationPage() {
-        LOGGER.info("request show location page");
-        return "fragment/location";
-    }
 }
