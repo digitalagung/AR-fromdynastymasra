@@ -1,16 +1,24 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head lang="en">
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link href="./css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="./css/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
+    <link href="./production/primeui-1.1-min.css" rel="stylesheet" type="text/css"/>
+    <link href="./themes/aristo/theme.css" rel="stylesheet" type="text/css"/>
+    <link href="./css/style.css" rel="stylesheet" type="text/css"/>
+    <link href="./css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <script src="./js/jquery-2.1.1.min.js" type="text/javascript"></script>
+    <script src="./js/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="./production/primeui-1.1-min.js" type="text/javascript"></script>
+    <script src="./js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="./js/style.js" type="text/javascript"></script>
+    <script src="./js/devoops.min.js" type="text/javascript"></script>
     <title>Yogyakarta Tour</title>
-    <object th:include="fragment/fragment :: header" th:remove="tag"></object>
-    <script src="../static/js/devoops.min.js" th:src="@{/js/devoops.min.js}" type="text/javascript"></script>
 </head>
 <body>
-<div th:if="${param.logout}"> <div th:id="logout"></div></div>
 <div id="screensaver">
     <canvas id="canvas"></canvas>
     <i class="fa fa-lock" id="screen_unlock"></i>
@@ -37,8 +45,8 @@
     <div class="container-fluid expanded-panel">
         <div class="row">
             <div id="logo" class="col-xs-12 col-sm-2">
-                <a href="/" th:href="@{/}">
-                    <img src="../static/images/jogja.png" class="img-responsive" th:src="@{/images/jogja.png}" width="133px" height="50px"/>
+                <a href="/">
+                    <img src="./images/jogja.png" class="img-responsive" width="133px" height="50px"/>
                 </a>
             </div>
             <div id="top-panel" class="col-xs-12 col-sm-10">
@@ -56,63 +64,63 @@
                         <ul class="nav navbar-nav pull-right panel-menu">
                             <li class="hidden-xs">
                                 <a href="https://www.oracle.com/java/index.html" target="_blank" class="ajax-link">
-                                    <i class="fa"><img src="../static/images/java-logo.png" class="img-responsive" th:src="@{/images/java-logo.png}" width="20px" height="20px"/></i>
+                                    <i class="fa"><img src="./images/java-logo.png" class="img-responsive" width="20px" height="20px"/></i>
                                 </a>
                             </li>
                             <li class="hidden-xs">
                                 <a href="http://spring.io/" target="_blank" class="ajax-link">
-                                    <i class="fa"><img src="../static/images/spring-logo.png" class="img-responsive" th:src="@{/images/spring-logo.png}" width="20px" height="20px"/></i>
+                                    <i class="fa"><img src="./images/spring-logo.png" class="img-responsive" width="20px" height="20px"/></i>
                                 </a>
                             </li>
                             <li class="hidden-xs">
                                 <a href="http://hibernate.org/" target="_blank" class="ajax-link">
-                                    <i class="fa"><img src="../static/images/hibernate-logo.png" class="img-responsive" th:src="@{/images/hibernate-logo.png}" width="20px" height="20px"/></i>
+                                    <i class="fa"><img src="./images/hibernate-logo.png" class="img-responsive" width="20px" height="20px"/></i>
                                 </a>
                             </li>
                             <li class="hidden-xs">
                                 <a href="http://www.mysql.com/" target="_blank" class="ajax-link">
-                                    <i class="fa"><img src="../static/images/mysql-logo.png" class="img-responsive" th:src="@{/images/mysql-logo.png}" width="20px" height="20px"/></i>
+                                    <i class="fa"><img src="./images/mysql-logo.png" class="img-responsive" width="20px" height="20px"/></i>
                                 </a>
                             </li>
                             <li class="hidden-xs">
                                 <a href="http://www.thymeleaf.org/" target="_blank" class="ajax-link">
-                                    <i class="fa"><img src="../static/images/thymeleaf-logo.png" class="img-responsive" th:src="@{/images/thymeleaf-logo.png}" width="20px" height="20px"/></i>
+                                    <i class="fa"><img src="./images/thymeleaf-logo.png" class="img-responsive" width="20px" height="20px"/></i>
                                 </a>
                             </li>
                             <li class="hidden-xs">
                                 <a href="http://jquery.com/" target="_blank" class="ajax-link">
-                                    <i class="fa"><img src="../static/images/jquery-logo.png" class="img-responsive" th:src="@{/images/jquery-logo.png}" width="20px" height="20px"/></i>
+                                    <i class="fa"><img src="./images/jquery-logo.png" class="img-responsive" width="20px" height="20px"/></i>
                                 </a>
                             </li>
                             <li class="hidden-xs">
                                 <a href="http://www.primefaces.org/primeui/" target="_blank" class="ajax-link">
-                                    <i class="fa"><img src="../static/images/primeui-logo.png" class="img-responsive" th:src="@{/images/primeui-logo.png}" width="20px" height="20px"/></i>
+                                    <i class="fa"><img src="./images/primeui-logo.png" class="img-responsive" width="20px" height="20px"/></i>
                                 </a>
                             </li>
                             <li class="hidden-xs">
                                 <a href="http://getbootstrap.com/" target="_blank" class="ajax-link">
-                                    <i class="fa"><img src="../static/images/bootstrap-logo.png" class="img-responsive" th:src="@{/images/bootstrap-logo.png}" width="20px" height="20px"/></i>
+                                    <i class="fa"><img src="./images/bootstrap-logo.png" class="img-responsive" width="20px" height="20px"/></i>
                                 </a>
                             </li>
                             <li class="hidden-xs">
                                 <a href="http://www.w3.org/TR/html5/" target="_blank" class="ajax-link">
-                                    <i class="fa"><img src="../static/images/html-5-logo.png" class="img-responsive" th:src="@{/images/html-5-logo.png}" width="20px" height="20px"/></i>
+                                    <i class="fa"><img src="./images/html-5-logo.png" class="img-responsive" width="20px" height="20px"/></i>
                                 </a>
                             </li>
                             <li class="hidden-xs">
                                 <a href="http://www.w3.org/Style/CSS/current-work.en.html" target="_blank" class="ajax-link">
-                                    <i class="fa"><img src="../static/images/css3-logo.png" class="img-responsive" th:src="@{/images/css3-logo.png}" width="20px" height="20px"/></i>
+                                    <i class="fa"><img src="./images/css3-logo.png" class="img-responsive" width="20px" height="20px"/></i>
                                 </a>
                             </li>
                             <li class="hidden-xs">
                                 <a href="http://www.json.org/" target="_blank" class="ajax-link">
-                                    <i class="fa"><img src="../static/images/json-logo.png" class="img-responsive" th:src="@{/images/json-logo.png}" width="20px" height="20px"/></i>
+                                    <i class="fa"><img src="./images/json-logo.png" class="img-responsive" width="20px" height="20px"/></i>
                                 </a>
                             </li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle account" data-toggle="dropdown">
                                     <div class="avatar">
-                                        <img src="../static/images/avatar.png" th:src="@{/images/avatar.png}" class="img-rounded" alt="avatar" />
+                                        <img src="./images/avatar.png" class="img-rounded" alt="avatar" />
                                     </div>
                                     <i class="fa fa-angle-down pull-right"></i>
                                     <div class="user-mini pull-right">
@@ -134,7 +142,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="/j_spring_security_logout" th:href="@{/logout}">
+                                        <a href="/logout">
                                             <i class="fa fa-power-off"></i>
                                             <span>Logout</span>
                                         </a>
@@ -155,7 +163,7 @@
         <div id="sidebar-left" class="col-xs-2 col-sm-2">
             <ul class="nav main-menu">
                 <li>
-                    <a href="fragment/dashboard" th:href="@{/dashboard}" class="active ajax-link">
+                    <a href="/dashboard" class="active ajax-link">
                         <i class="fa fa-dashboard"></i>
                         <span class="hidden-xs">Dashboard</span>
                     </a>
@@ -233,7 +241,7 @@
                         <span class="hidden-xs">Maps</span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="ajax-link" href="fragment/location" th:href="@{/admin/location}">Location</a></li>
+                        <li><a class="ajax-link" href="/admin/location">Location</a></li>
                         <li><a class="ajax-link" href="ajax/maps.html">OpenStreetMap</a></li>
                         <li><a class="ajax-link" href="ajax/map_fullscreen.html">Fullscreen map</a></li>
                     </ul>
@@ -327,8 +335,7 @@
                         <span class="hidden-xs">Users</span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="ajax-link" href="fragment/user" th:href="@{/admin/user}">New User</a></li>
-                        <li><a class="ajax-link" href="fragment/location" th:href="@{/admin/location}">Location</a></li>
+                        <li><a class="ajax-link" href="/admin/user">New User</a></li>
                     </ul>
                 </li>
             </ul>
@@ -336,7 +343,7 @@
         <!--Start Content-->
         <div id="content" class="col-xs-12 col-sm-10">
             <div class="preloader">
-                <img src="../static/images/devoops_getdata.gif" th:src="@{/images/devoops_getdata.gif}" class="devoops-getdata" alt="preloader"/>
+                <img src="./images/devoops_getdata.gif" class="devoops-getdata" alt="preloader"/>
             </div>
             <div id="ajax-content"></div>
         </div>
