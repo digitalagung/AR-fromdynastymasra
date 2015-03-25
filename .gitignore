@@ -4,6 +4,8 @@
 ls
 .directory
 .DS_Store
+*.*~
+*~
 
 ##################
 # Eclipse Config #
