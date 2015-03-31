@@ -5,7 +5,13 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-
+/*
+ * Author   : @dynastymasra
+ * User     : Dimas Ragil T
+ * Email    : dynastymasra@gmail.com
+ * LinkedIn : http://www.linkedin.com/in/dynastymasra
+ * Blogspot : dynastymasra.wordpress.com | dynastymasra.blogspot.com
+ */
 public class MainActivity extends Activity {
 
     @Override
