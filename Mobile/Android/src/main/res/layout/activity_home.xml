@@ -9,11 +9,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-    <fragment
-            android:id="@+id/map"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            class="com.google.android.gms.maps.MapFragment"/>
+    <!--<fragment-->
+            <!--android:id="@+id/map"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--class="com.google.android.gms.maps.MapFragment"/>-->
 
     <ListView
             android:id="@+id/left_drawer"

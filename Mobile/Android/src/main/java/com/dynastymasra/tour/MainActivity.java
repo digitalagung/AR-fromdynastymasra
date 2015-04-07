@@ -4,8 +4,9 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import com.dynastymasra.tour.service.DataService;
 
-/*
+/**
  * Author   : @dynastymasra
  * User     : Dimas Ragil T
  * Email    : dynastymasra@gmail.com
@@ -18,8 +19,15 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        DataService dataService = new DataService(MainActivity.this);
+        dataService.execute();
     }
 
+    @Override
+    public void onBackPressed() {
+        this.finish();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
