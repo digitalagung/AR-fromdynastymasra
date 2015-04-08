@@ -55,14 +55,14 @@ android {
         exclude 'META-INF/LGPL2.1'
     }
 
-//    signingConfigs {
-//        release {
-//            storeFile file("###.keystore")
-//            storePassword "###"
-//            keyAlias "###"
-//            keyPassword "###"
-//        }
-//    }
+    signingConfigs {
+        release {
+            storeFile file("squarecode.keystore")
+            storePassword "Squarecode"
+            keyAlias "android"
+            keyPassword "Squarecode"
+        }
+    }
 
     buildTypes {
         release {
