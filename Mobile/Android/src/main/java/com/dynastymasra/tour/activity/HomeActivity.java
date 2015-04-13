@@ -4,6 +4,10 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.Camera;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -18,10 +22,12 @@ import com.dynastymasra.tour.MainApplication;
 import com.dynastymasra.tour.R;
 import com.dynastymasra.tour.adapter.MenuDrawerAdapter;
 import com.dynastymasra.tour.domain.Content;
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +40,7 @@ import java.util.List;
  * Blogspot : dynastymasra.wordpress.com | dynastymasra.blogspot.com
  */
 public class HomeActivity extends Activity {
-    private final static LatLng YOGYAKARTA = new LatLng(-7.797069, 110.37053);
+    private final static String TAG = "HomeActivity";
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -44,6 +50,10 @@ public class HomeActivity extends Activity {
     private List<String> dataList;
     private GoogleMap map;
     private List<Content> contents;
+    private LocationManager locationManager;
+    private LocationListener locationListener;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +61,7 @@ public class HomeActivity extends Activity {
         setContentView(R.layout.activity_home);
 
         dataList = new ArrayList<>();
-        contents = ((MainApplication) getApplicationContext()).getDataApp().getContents();
+//        contents = ((MainApplication) getApplicationContext()).getDataApp().getContents();
         mTitle = mDrawerTitle = getTitle();
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
@@ -133,13 +143,27 @@ public class HomeActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
+    private GoogleMap.OnMyLocationChangeListener onMyLocationChangeListener = new GoogleMap.OnMyLocationChangeListener() {
+
+        @Override
+        public void onMyLocationChange(Location location) {
+            Log.i(TAG, "onMyLocationChange(Latitude=" + location.getLatitude() + ", Longtitude=" + location.getLongitude() + ")");
+            LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+            map.setMyLocationEnabled(true);
+            map.animateCamera(CameraUpdateFactory.newLatLng(latLng));
+        }
+    };
+
     public void getMaps() {
         if(map == null) {
             map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
-            map.moveCamera(CameraUpdateFactory.newLatLngZoom(YOGYAKARTA, 15));
-            map.animateCamera(CameraUpdateFactory.zoomTo(10), 2000, null);
-            map.setMyLocationEnabled(true);
             map.getUiSettings().setCompassEnabled(true);
+            map.getUiSettings().setZoomControlsEnabled(true);
+            map.getUiSettings().setMyLocationButtonEnabled(true);
+            map.getUiSettings().setAllGesturesEnabled(true);
+            map.setMyLocationEnabled(true);
+            map.setTrafficEnabled(true);
+            map.setOnMyLocationChangeListener(onMyLocationChangeListener);
         }
     }
 }
