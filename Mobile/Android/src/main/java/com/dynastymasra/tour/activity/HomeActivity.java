@@ -17,11 +17,13 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import com.dynastymasra.tour.MainApplication;
 import com.dynastymasra.tour.R;
 import com.dynastymasra.tour.adapter.MenuDrawerAdapter;
 import com.dynastymasra.tour.domain.Content;
+import com.dynastymasra.tour.domain.enums.Category;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -41,6 +43,7 @@ import java.util.List;
  */
 public class HomeActivity extends Activity {
     private final static String TAG = "HomeActivity";
+    private final static LatLng YOGYAKARTA = new LatLng(-7.797069, 110.37053);
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -61,7 +64,7 @@ public class HomeActivity extends Activity {
         setContentView(R.layout.activity_home);
 
         dataList = new ArrayList<>();
-//        contents = ((MainApplication) getApplicationContext()).getDataApp().getContents();
+        contents = ((MainApplication) getApplicationContext()).getDataApp().getContents();
         mTitle = mDrawerTitle = getTitle();
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
@@ -75,6 +78,7 @@ public class HomeActivity extends Activity {
 
         menuDrawerAdapter = new MenuDrawerAdapter(this, dataList);
         mDrawerList.setAdapter(menuDrawerAdapter);
+        mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 
         getActionBar().setDisplayHomeAsUpEnabled(true);
         getActionBar().setHomeButtonEnabled(true);
@@ -163,7 +167,53 @@ public class HomeActivity extends Activity {
             map.getUiSettings().setAllGesturesEnabled(true);
             map.setMyLocationEnabled(true);
             map.setTrafficEnabled(true);
+            map.moveCamera(CameraUpdateFactory.newLatLngZoom(YOGYAKARTA, 15));
             map.setOnMyLocationChangeListener(onMyLocationChangeListener);
+
+            for (Content value : contents) {
+                if (value.getCategory().equals(Category.Temple)) {
+                    map.addMarker(new MarkerOptions().position(new LatLng(value.getLatitude(), value.getLongtitude()))
+                            .title(value.getTitle()).snippet(value.getDescription()));
+                } else if (value.getCategory().equals(Category.Airport)) {
+                    map.addMarker(new MarkerOptions().position(new LatLng(value.getLatitude(), value.getLongtitude()))
+                            .title(value.getTitle()).snippet(value.getDescription()));
+                } else if (value.getCategory().equals(Category.Terminal)) {
+                    map.addMarker(new MarkerOptions().position(new LatLng(value.getLatitude(), value.getLongtitude()))
+                            .title(value.getTitle()).snippet(value.getDescription()));
+                } else if (value.getCategory().equals(Category.Station)) {
+                    map.addMarker(new MarkerOptions().position(new LatLng(value.getLatitude(), value.getLongtitude()))
+                            .title(value.getTitle()).snippet(value.getDescription()));
+                }
+            }
         }
+    }
+
+    private class DrawerItemClickListener implements ListView.OnItemClickListener {
+
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            selectItem(position);
+        }
+    }
+
+    public void selectItem(int position) {
+        switch (position) {
+            case 0:
+                map.clear();
+                break;
+            case 1:
+                map.clear();
+                for (Content value : contents) {
+                    if (value.getCategory().equals(Category.Temple)) {
+                        map.addMarker(new MarkerOptions().position(new LatLng(value.getLatitude(), value.getLongtitude()))
+                                .title(value.getTitle()).snippet(value.getDescription()));
+                    }
+                }
+                break;
+        }
+
+        mDrawerList.setItemChecked(position, true);
+        setTitle(dataList.get(position));
+        mDrawerLayout.closeDrawer(mDrawerList);
     }
 }
