@@ -2,6 +2,7 @@ package com.dynastymasra.tour.activity;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Camera;
@@ -24,10 +25,12 @@ import com.dynastymasra.tour.R;
 import com.dynastymasra.tour.adapter.MenuDrawerAdapter;
 import com.dynastymasra.tour.domain.Content;
 import com.dynastymasra.tour.domain.enums.Category;
+import com.dynastymasra.tour.helper.AlertDialogHelper;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -64,17 +67,35 @@ public class HomeActivity extends Activity {
         setContentView(R.layout.activity_home);
 
         dataList = new ArrayList<>();
-        contents = ((MainApplication) getApplicationContext()).getDataApp().getContents();
+        if (((MainApplication) getApplicationContext()).getDataApp().getContents() == null) {
+            AlertDialogHelper.informationAlert(this, "Error 404", "Data not found in server", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    finish();
+                }
+            });
+        } else {
+            contents = ((MainApplication) getApplicationContext()).getDataApp().getContents();
+        }
+
         mTitle = mDrawerTitle = getTitle();
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
 
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
         dataList.add("Hotel");
-        dataList.add("Temple");
+        dataList.add("Airport");
         dataList.add("Station");
         dataList.add("Terminal");
-        dataList.add("Airport");
+        dataList.add("Temple");
+        dataList.add("Beach");
+        dataList.add("Palace");
+        dataList.add("Museum");
+        dataList.add("Nature");
+        dataList.add("Gas Station");
+        dataList.add("Mosque");
+        dataList.add("ATM");
+        dataList.add("Qiblat");
 
         menuDrawerAdapter = new MenuDrawerAdapter(this, dataList);
         mDrawerList.setAdapter(menuDrawerAdapter);
@@ -171,18 +192,27 @@ public class HomeActivity extends Activity {
             map.setOnMyLocationChangeListener(onMyLocationChangeListener);
 
             for (Content value : contents) {
+                Log.i(TAG, "value=>" + value.getIdLocation() + " " + value.getTitle() + " " + value.getAddress());
                 if (value.getCategory().equals(Category.Temple)) {
+                    Log.i(TAG, "Temple=>" + value.getTitle() + " " + value.getLatitude() + " " + value.getLongtitude());
                     map.addMarker(new MarkerOptions().position(new LatLng(value.getLatitude(), value.getLongtitude()))
-                            .title(value.getTitle()).snippet(value.getDescription()));
+                            .title(value.getTitle()).snippet(value.getDescription()).icon(BitmapDescriptorFactory
+                                    .fromResource(R.drawable.ic_temple)));
                 } else if (value.getCategory().equals(Category.Airport)) {
+                    Log.i(TAG, "Airport=>" + value.getTitle() + " " + value.getLatitude() + " " + value.getLongtitude());
                     map.addMarker(new MarkerOptions().position(new LatLng(value.getLatitude(), value.getLongtitude()))
-                            .title(value.getTitle()).snippet(value.getDescription()));
+                            .title(value.getTitle()).snippet(value.getDescription()).icon(BitmapDescriptorFactory
+                                    .fromResource(R.drawable.ic_airport)));
                 } else if (value.getCategory().equals(Category.Terminal)) {
+                    Log.i(TAG, "Terminal=>" + value.getTitle() + " " + value.getLatitude() + " " + value.getLongtitude());
                     map.addMarker(new MarkerOptions().position(new LatLng(value.getLatitude(), value.getLongtitude()))
-                            .title(value.getTitle()).snippet(value.getDescription()));
+                            .title(value.getTitle()).snippet(value.getDescription()).icon(BitmapDescriptorFactory
+                                    .fromResource(R.drawable.ic_bus)));
                 } else if (value.getCategory().equals(Category.Station)) {
+                    Log.i(TAG, "Station=>" + value.getTitle() + " " + value.getLatitude() + " " + value.getLongtitude());
                     map.addMarker(new MarkerOptions().position(new LatLng(value.getLatitude(), value.getLongtitude()))
-                            .title(value.getTitle()).snippet(value.getDescription()));
+                            .title(value.getTitle()).snippet(value.getDescription()).icon(BitmapDescriptorFactory
+                                    .fromResource(R.drawable.ic_train)));
                 }
             }
         }
