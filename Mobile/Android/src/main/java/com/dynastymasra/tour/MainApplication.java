@@ -2,6 +2,9 @@ package com.dynastymasra.tour;
 
 import android.app.Application;
 import com.dynastymasra.tour.domain.Data;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 /**
  * Author   : @dynastymasra
@@ -19,5 +22,14 @@ public class MainApplication extends Application {
 
     public void setDataApp(Data dataApp) {
         this.dataApp = dataApp;
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+
+        DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder().cacheInMemory(true).cacheOnDisk(true).build();
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this).defaultDisplayImageOptions(defaultOptions).build();
+        ImageLoader.getInstance().init(config);
     }
 }
