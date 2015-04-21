@@ -1,11 +1,9 @@
 package com.dynastymasra.tour.helper;
 
-
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import com.dynastymasra.tour.R;
-import com.dynastymasra.tour.domain.Content;
 
 /**
  * Author   : @dynastymasra

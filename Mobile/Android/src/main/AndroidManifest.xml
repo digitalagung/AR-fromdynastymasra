@@ -39,6 +39,11 @@
         <activity android:name=".activity.HomeActivity"
                   android:screenOrientation="sensorPortrait">
         </activity>
+        <activity android:name=".activity.ArActivity"
+                  android:screenOrientation="sensorLandscape"
+                  android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+                  android:configChanges="keyboardHidden|orientation">
+        </activity>
 
         <meta-data
                 android:name="com.google.android.maps.v2.API_KEY"

@@ -14,7 +14,7 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
  * Blogspot : dynastymasra.wordpress.com | dynastymasra.blogspot.com
  */
 public class MainApplication extends Application {
-    public Data dataApp;
+    public Data dataApp = null;
 
     public Data getDataApp() {
         return dataApp;

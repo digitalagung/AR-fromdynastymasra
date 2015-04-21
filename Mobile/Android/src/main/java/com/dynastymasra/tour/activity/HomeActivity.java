@@ -1,12 +1,10 @@
 package com.dynastymasra.tour.activity;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.graphics.Camera;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -19,7 +17,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
-import android.widget.*;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
 import com.dynastymasra.tour.MainApplication;
 import com.dynastymasra.tour.R;
 import com.dynastymasra.tour.adapter.MenuDrawerAdapter;
@@ -27,7 +29,6 @@ import com.dynastymasra.tour.domain.Content;
 import com.dynastymasra.tour.domain.enums.Category;
 import com.dynastymasra.tour.domain.url.Url;
 import com.dynastymasra.tour.helper.AlertDialogHelper;
-import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
@@ -73,7 +74,7 @@ public class HomeActivity extends Activity {
         setContentView(R.layout.activity_home);
 
         dataList = new ArrayList<>();
-        if (((MainApplication) getApplicationContext()).getDataApp().getContents() == null) {
+        if (((MainApplication) getApplicationContext()).getDataApp() == null) {
             AlertDialogHelper.informationAlert(this, "Error 404", "Data not found in server", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -174,6 +175,8 @@ public class HomeActivity extends Activity {
                 startActivity(intent);
                 return true;
             case R.id.action_ar:
+                Intent intent1 = new Intent(this, ArActivity.class);
+                startActivity(intent1);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
