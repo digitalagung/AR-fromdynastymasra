@@ -8,6 +8,6 @@ package com.dynastymasra.tour.domain.url;
  * Blogspot : dynastymasra.wordpress.com | dynastymasra.blogspot.com
  */
 public class Url {
-    public static final String URL = "http://192.168.2.80/webservice/json.php";
-    public static final String URL_PHOTO = "http://192.168.2.80/webservice/";
+    public static final String URL = "http://128.199.75.90/WebServicePHPTA/json.php";
+    public static final String URL_PHOTO = "http://128.199.75.90/WebServicePHPTA/";
 }
