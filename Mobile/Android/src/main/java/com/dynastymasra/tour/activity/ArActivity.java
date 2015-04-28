@@ -41,7 +41,7 @@ public class ArActivity extends AugmentedActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        LocalDataSource localData = new LocalDataSource(this.getResources());
+        LocalDataSource localData = new LocalDataSource(this.getResources(), this);
         ARData.addMarkers(localData.getMarkers());
     }
 

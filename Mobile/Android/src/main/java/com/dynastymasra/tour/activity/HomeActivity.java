@@ -6,8 +6,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
@@ -63,10 +61,6 @@ public class HomeActivity extends Activity {
     private GoogleMap map;
     private List<Content> contents;
     private HashMap<Marker, Content> valueContent;
-    private LocationManager locationManager;
-    private LocationListener locationListener;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +84,7 @@ public class HomeActivity extends Activity {
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
 
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
+        dataList.add("All");
         dataList.add("Hotel");
         dataList.add("Airport");
         dataList.add("Station");
@@ -233,6 +228,18 @@ public class HomeActivity extends Activity {
                             .title(value.getTitle()).snippet(value.getDescription()).icon(BitmapDescriptorFactory
                                     .fromResource(R.drawable.ic_train)));
                     valueContent.put(marker, value);
+                } else if (value.getCategory().equals(Category.Hotel)) {
+                    Log.i(TAG, "Hotel=>" + value.getTitle() + " " + value.getLatitude() + " " + value.getLongtitude());
+                    Marker marker = map.addMarker(new MarkerOptions().position(new LatLng(value.getLatitude(), value.getLongtitude()))
+                            .title(value.getTitle()).snippet(value.getDescription()).icon(BitmapDescriptorFactory
+                                    .fromResource(R.drawable.ic_hotel)));
+                    valueContent.put(marker, value);
+                } else if (value.getCategory().equals(Category.Beach)) {
+                    Log.i(TAG, "Hotel=>" + value.getTitle() + " " + value.getLatitude() + " " + value.getLongtitude());
+                    Marker marker = map.addMarker(new MarkerOptions().position(new LatLng(value.getLatitude(), value.getLongtitude()))
+                            .title(value.getTitle()).snippet(value.getDescription()).icon(BitmapDescriptorFactory
+                                    .fromResource(R.drawable.ic_beach_maker)));
+                    valueContent.put(marker, value);
                 }
             }
 
@@ -249,6 +256,7 @@ public class HomeActivity extends Activity {
                     TextView description = (TextView) dialog.findViewById(R.id.text_content);
 
                     Content content = valueContent.get(marker);
+                    Log.i(TAG, "URL=>" + Url.URL_PHOTO + content.getPhotoUrl());
 
                     DisplayImageOptions options = new DisplayImageOptions.Builder().cacheInMemory(true)
                             .resetViewBeforeLoading(true).showImageForEmptyUri(R.drawable.main_logo)
@@ -281,22 +289,61 @@ public class HomeActivity extends Activity {
     }
 
     public void selectItem(int position) {
+        valueContent = new HashMap<>();
         switch (position) {
             case 0:
                 map.clear();
                 for (Content value : contents) {
                     Log.i(TAG, "value=>" + value.getIdLocation() + " " + value.getTitle() + " " + value.getAddress());
+                    if (value.getCategory().equals(Category.Temple)) {
+                        Log.i(TAG, "Temple=>" + value.getTitle() + " " + value.getLatitude() + " " + value.getLongtitude());
+                        Marker marker = map.addMarker(new MarkerOptions().position(new LatLng(value.getLatitude(), value.getLongtitude()))
+                                .title(value.getTitle()).snippet(value.getDescription()).icon(BitmapDescriptorFactory
+                                        .fromResource(R.drawable.ic_temple)));
+                        valueContent.put(marker, value);
+                    } else if (value.getCategory().equals(Category.Airport)) {
+                        Log.i(TAG, "Airport=>" + value.getTitle() + " " + value.getLatitude() + " " + value.getLongtitude());
+                        Marker marker = map.addMarker(new MarkerOptions().position(new LatLng(value.getLatitude(), value.getLongtitude()))
+                                .title(value.getTitle()).snippet(value.getDescription()).icon(BitmapDescriptorFactory
+                                        .fromResource(R.drawable.ic_airport)));
+                        valueContent.put(marker, value);
+                    } else if (value.getCategory().equals(Category.Terminal)) {
+                        Log.i(TAG, "Terminal=>" + value.getTitle() + " " + value.getLatitude() + " " + value.getLongtitude());
+                        Marker marker = map.addMarker(new MarkerOptions().position(new LatLng(value.getLatitude(), value.getLongtitude()))
+                                .title(value.getTitle()).snippet(value.getDescription()).icon(BitmapDescriptorFactory
+                                        .fromResource(R.drawable.ic_bus)));
+                        valueContent.put(marker, value);
+                    } else if (value.getCategory().equals(Category.Station)) {
+                        Log.i(TAG, "Station=>" + value.getTitle() + " " + value.getLatitude() + " " + value.getLongtitude());
+                        Marker marker = map.addMarker(new MarkerOptions().position(new LatLng(value.getLatitude(), value.getLongtitude()))
+                                .title(value.getTitle()).snippet(value.getDescription()).icon(BitmapDescriptorFactory
+                                        .fromResource(R.drawable.ic_train)));
+                        valueContent.put(marker, value);
+                    } else if (value.getCategory().equals(Category.Hotel)) {
+                        Log.i(TAG, "Hotel=>" + value.getTitle() + " " + value.getLatitude() + " " + value.getLongtitude());
+                        Marker marker = map.addMarker(new MarkerOptions().position(new LatLng(value.getLatitude(), value.getLongtitude()))
+                                .title(value.getTitle()).snippet(value.getDescription()).icon(BitmapDescriptorFactory
+                                        .fromResource(R.drawable.ic_hotel)));
+                        valueContent.put(marker, value);
+                    } else if (value.getCategory().equals(Category.Beach)) {
+                        Log.i(TAG, "Hotel=>" + value.getTitle() + " " + value.getLatitude() + " " + value.getLongtitude());
+                        Marker marker = map.addMarker(new MarkerOptions().position(new LatLng(value.getLatitude(), value.getLongtitude()))
+                                .title(value.getTitle()).snippet(value.getDescription()).icon(BitmapDescriptorFactory
+                                        .fromResource(R.drawable.ic_beach_maker)));
+                        valueContent.put(marker, value);
+                    }
                 }
                 break;
             case 1:
                 map.clear();
                 for (Content value : contents) {
                     Log.i(TAG, "value=>" + value.getIdLocation() + " " + value.getTitle() + " " + value.getAddress());
-                    if (value.getCategory().equals(Category.Airport)) {
-                        Log.i(TAG, "Airport=>" + value.getTitle() + " " + value.getLatitude() + " " + value.getLongtitude());
-                        map.addMarker(new MarkerOptions().position(new LatLng(value.getLatitude(), value.getLongtitude()))
+                    if (value.getCategory().equals(Category.Hotel)) {
+                        Log.i(TAG, "Hotel=>" + value.getTitle() + " " + value.getLatitude() + " " + value.getLongtitude());
+                        Marker marker = map.addMarker(new MarkerOptions().position(new LatLng(value.getLatitude(), value.getLongtitude()))
                                 .title(value.getTitle()).snippet(value.getDescription()).icon(BitmapDescriptorFactory
-                                        .fromResource(R.drawable.ic_airport)));
+                                        .fromResource(R.drawable.ic_hotel)));
+                        valueContent.put(marker, value);
                     }
                 }
                 break;
@@ -304,11 +351,12 @@ public class HomeActivity extends Activity {
                 map.clear();
                 for (Content value : contents) {
                     Log.i(TAG, "value=>" + value.getIdLocation() + " " + value.getTitle() + " " + value.getAddress());
-                    if (value.getCategory().equals(Category.Station)) {
-                        Log.i(TAG, "Station=>" + value.getTitle() + " " + value.getLatitude() + " " + value.getLongtitude());
-                        map.addMarker(new MarkerOptions().position(new LatLng(value.getLatitude(), value.getLongtitude()))
+                    if (value.getCategory().equals(Category.Airport)) {
+                        Log.i(TAG, "Airport=>" + value.getTitle() + " " + value.getLatitude() + " " + value.getLongtitude());
+                        Marker marker = map.addMarker(new MarkerOptions().position(new LatLng(value.getLatitude(), value.getLongtitude()))
                                 .title(value.getTitle()).snippet(value.getDescription()).icon(BitmapDescriptorFactory
-                                        .fromResource(R.drawable.ic_train)));
+                                        .fromResource(R.drawable.ic_airport)));
+                        valueContent.put(marker, value);
                     }
                 }
                 break;
@@ -316,13 +364,56 @@ public class HomeActivity extends Activity {
                 map.clear();
                 for (Content value : contents) {
                     Log.i(TAG, "value=>" + value.getIdLocation() + " " + value.getTitle() + " " + value.getAddress());
-                    if (value.getCategory().equals(Category.Terminal)) {
-                        Log.i(TAG, "Terminal=>" + value.getTitle() + " " + value.getLatitude() + " " + value.getLongtitude());
-                        map.addMarker(new MarkerOptions().position(new LatLng(value.getLatitude(), value.getLongtitude()))
+                    if (value.getCategory().equals(Category.Station)) {
+                        Log.i(TAG, "Station=>" + value.getTitle() + " " + value.getLatitude() + " " + value.getLongtitude());
+                        Marker marker = map.addMarker(new MarkerOptions().position(new LatLng(value.getLatitude(), value.getLongtitude()))
                                 .title(value.getTitle()).snippet(value.getDescription()).icon(BitmapDescriptorFactory
-                                        .fromResource(R.drawable.ic_bus)));
+                                        .fromResource(R.drawable.ic_train)));
+                        valueContent.put(marker, value);
                     }
                 }
+                break;
+            case 4:
+                map.clear();
+                for (Content value : contents) {
+                    Log.i(TAG, "value=>" + value.getIdLocation() + " " + value.getTitle() + " " + value.getAddress());
+                    if (value.getCategory().equals(Category.Terminal)) {
+                        Log.i(TAG, "Terminal=>" + value.getTitle() + " " + value.getLatitude() + " " + value.getLongtitude());
+                        Marker marker = map.addMarker(new MarkerOptions().position(new LatLng(value.getLatitude(), value.getLongtitude()))
+                                .title(value.getTitle()).snippet(value.getDescription()).icon(BitmapDescriptorFactory
+                                        .fromResource(R.drawable.ic_bus)));
+                        valueContent.put(marker, value);
+                    }
+                }
+                break;
+            case 5:
+                map.clear();
+                for (Content value : contents) {
+                    Log.i(TAG, "value=>" + value.getIdLocation() + " " + value.getTitle() + " " + value.getAddress());
+                    if (value.getCategory().equals(Category.Temple)) {
+                        Log.i(TAG, "Temple=>" + value.getTitle() + " " + value.getLatitude() + " " + value.getLongtitude());
+                        Marker marker = map.addMarker(new MarkerOptions().position(new LatLng(value.getLatitude(), value.getLongtitude()))
+                                .title(value.getTitle()).snippet(value.getDescription()).icon(BitmapDescriptorFactory
+                                        .fromResource(R.drawable.ic_temple)));
+                        valueContent.put(marker, value);
+                    }
+                }
+                break;
+            case 6:
+                map.clear();
+                for (Content value : contents) {
+                    Log.i(TAG, "value=>" + value.getIdLocation() + " " + value.getTitle() + " " + value.getAddress());
+                    if (value.getCategory().equals(Category.Beach)) {
+                        Log.i(TAG, "Beach=>" + value.getTitle() + " " + value.getLatitude() + " " + value.getLongtitude());
+                        Marker marker = map.addMarker(new MarkerOptions().position(new LatLng(value.getLatitude(), value.getLongtitude()))
+                                .title(value.getTitle()).snippet(value.getDescription()).icon(BitmapDescriptorFactory
+                                        .fromResource(R.drawable.ic_beach_maker)));
+                        valueContent.put(marker, value);
+                    }
+                }
+                break;
+            default:
+                map.clear();
                 break;
         }
 

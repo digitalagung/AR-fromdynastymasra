@@ -8,5 +8,5 @@ package com.dynastymasra.tour.domain.enums;
  * Blogspot : dynastymasra.wordpress.com | dynastymasra.blogspot.com
  */
 public enum Category {
-    Hotel, Temple, Airport, Terminal, Station
+    Hotel, Temple, Airport, Terminal, Station, Beach
 }
