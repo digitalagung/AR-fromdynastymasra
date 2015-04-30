@@ -22,8 +22,8 @@ import android.util.Log;
  */
 public abstract class ARData {
     private static final String TAG = "ARData";
-	private static final Map<String,Marker> MARKER_LIST = new ConcurrentHashMap<String,Marker>();
-    private static final List<Marker> CACHE = new CopyOnWriteArrayList<Marker>();
+	private static final Map<String,Marker> MARKER_LIST = new ConcurrentHashMap<>();
+    private static final List<Marker> CACHE = new CopyOnWriteArrayList<>();
     private static final AtomicBoolean DIRTY = new AtomicBoolean(false);
     private static final float[] LOCATION_ARRAY = new float[3];
     public static final Location HARD_FIX = new Location("ATL");
