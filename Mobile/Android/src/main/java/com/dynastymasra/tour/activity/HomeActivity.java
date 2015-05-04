@@ -97,7 +97,6 @@ public class HomeActivity extends Activity {
         dataList.add("Gas Station");
         dataList.add("Mosque");
         dataList.add("ATM");
-        dataList.add("Qiblat");
 
         menuDrawerAdapter = new MenuDrawerAdapter(this, dataList);
         mDrawerList.setAdapter(menuDrawerAdapter);
@@ -276,12 +275,6 @@ public class HomeActivity extends Activity {
                             .title(value.getTitle()).snippet(value.getDescription()).icon(BitmapDescriptorFactory
                                     .fromResource(R.drawable.ic_atm_marker)));
                     valueContent.put(marker, value);
-                } else if (value.getCategory().equals(Category.Qiblat)) {
-                    Log.i(TAG, "Qiblat=>" + value.getTitle() + " " + value.getLatitude() + " " + value.getLongtitude());
-                    Marker marker = map.addMarker(new MarkerOptions().position(new LatLng(value.getLatitude(), value.getLongtitude()))
-                            .title(value.getTitle()).snippet(value.getDescription()).icon(BitmapDescriptorFactory
-                                    .fromResource(R.drawable.ic_kaaba_marker)));
-                    valueContent.put(marker, value);
                 }
             }
 
@@ -408,12 +401,6 @@ public class HomeActivity extends Activity {
                         Marker marker = map.addMarker(new MarkerOptions().position(new LatLng(value.getLatitude(), value.getLongtitude()))
                                 .title(value.getTitle()).snippet(value.getDescription()).icon(BitmapDescriptorFactory
                                         .fromResource(R.drawable.ic_atm_marker)));
-                        valueContent.put(marker, value);
-                    } else if (value.getCategory().equals(Category.Qiblat)) {
-                        Log.i(TAG, "Qiblat=>" + value.getTitle() + " " + value.getLatitude() + " " + value.getLongtitude());
-                        Marker marker = map.addMarker(new MarkerOptions().position(new LatLng(value.getLatitude(), value.getLongtitude()))
-                                .title(value.getTitle()).snippet(value.getDescription()).icon(BitmapDescriptorFactory
-                                        .fromResource(R.drawable.ic_kaaba_marker)));
                         valueContent.put(marker, value);
                     }
                 }
@@ -570,19 +557,6 @@ public class HomeActivity extends Activity {
                         Marker marker = map.addMarker(new MarkerOptions().position(new LatLng(value.getLatitude(), value.getLongtitude()))
                                 .title(value.getTitle()).snippet(value.getDescription()).icon(BitmapDescriptorFactory
                                         .fromResource(R.drawable.ic_atm_marker)));
-                        valueContent.put(marker, value);
-                    }
-                }
-                break;
-            case 13:
-                map.clear();
-                for (Content value : contents) {
-                    Log.i(TAG, "value=>" + value.getIdLocation() + " " + value.getTitle() + " " + value.getAddress());
-                    if (value.getCategory().equals(Category.Qiblat)) {
-                        Log.i(TAG, "Qiblat=>" + value.getTitle() + " " + value.getLatitude() + " " + value.getLongtitude());
-                        Marker marker = map.addMarker(new MarkerOptions().position(new LatLng(value.getLatitude(), value.getLongtitude()))
-                                .title(value.getTitle()).snippet(value.getDescription()).icon(BitmapDescriptorFactory
-                                        .fromResource(R.drawable.ic_kaaba_marker)));
                         valueContent.put(marker, value);
                     }
                 }

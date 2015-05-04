@@ -10,5 +10,9 @@
     <string name="drawer_close">Close</string>
     <string name="text_close_eng">Close</string>
     <string name="text_image_eng">Description Image</string>
+    <string name="text_hide_radar">Hide Radar</string>
+    <string name="text_hide_zoom">Hide Zoom Bar</string>
+    <string name="text_exit">Exit</string>
+    <string name="text_category">Category</string>
 
 </resources>

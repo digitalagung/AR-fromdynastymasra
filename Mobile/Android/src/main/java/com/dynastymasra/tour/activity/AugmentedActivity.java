@@ -65,6 +65,8 @@ public class AugmentedActivity extends SensorsActivity implements OnTouchListene
         setContentView(camScreen);
 
         augmentedView = new AugmentedView(this);
+        augmentedView.clearAnimation();
+        augmentedView.destroyDrawingCache();
         augmentedView.setOnTouchListener(this);
         LayoutParams augLayout = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
         addContentView(augmentedView,augLayout);

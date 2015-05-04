@@ -15,6 +15,7 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
  */
 public class MainApplication extends Application {
     public Data dataApp = null;
+    public int position = 0;
 
     public Data getDataApp() {
         return dataApp;
@@ -22,6 +23,14 @@ public class MainApplication extends Application {
 
     public void setDataApp(Data dataApp) {
         this.dataApp = dataApp;
+    }
+
+    public int getPosition() {
+        return position;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
     }
 
     @Override

@@ -38,7 +38,6 @@ public class LocalDataSource extends DataSource {
     private static Bitmap iconGasStation = null;
     private static Bitmap iconMosque = null;
     private static Bitmap iconATM = null;
-    private static Bitmap iconKaaba = null;
     private Context context;
     
     public LocalDataSource(Resources res, Context context) {
@@ -62,80 +61,175 @@ public class LocalDataSource extends DataSource {
         iconGasStation = BitmapFactory.decodeResource(res, R.drawable.ic_gas_marker);
         iconMosque = BitmapFactory.decodeResource(res, R.drawable.ic_mosque_marker);
         iconATM = BitmapFactory.decodeResource(res, R.drawable.ic_atm_marker);
-        iconKaaba = BitmapFactory.decodeResource(res, R.drawable.ic_kaaba_marker);
     }
     
     public List<Marker> getMarkers() {
         List<Content> contentList = ((MainApplication) context.getApplicationContext()).getDataApp().getContents();
         Log.i(TAG, "Size AR=>" + contentList.size());
+        Log.i(TAG, "position=>" + ((MainApplication) context.getApplicationContext()).getPosition());
+
+        int position = ((MainApplication) context.getApplicationContext()).getPosition();
 
         for (Content value : contentList) {
-            Log.i(TAG, "value=>" + value.getIdLocation() + " " + value.getTitle() + " " + value.getAddress());
-            if (value.getCategory().equals(Category.Temple)) {
-                Log.i(TAG, "Temple=>" + value.getTitle() + " " + value.getLatitude() + " " + value.getLongtitude());
-                Marker marker = new IconMarker(value.getTitle(), value.getLatitude(), value.getLongtitude(), 0,
-                        Color.TRANSPARENT, iconTemple);
-                cachedMarkers.add(marker);
-            } else if (value.getCategory().equals(Category.Airport)) {
-                Log.i(TAG, "Airport=>" + value.getTitle() + " " + value.getLatitude() + " " + value.getLongtitude());
-                Marker marker = new IconMarker(value.getTitle(), value.getLatitude(), value.getLongtitude(), 0,
-                        Color.TRANSPARENT, iconAirport);
-                cachedMarkers.add(marker);
-            } else if (value.getCategory().equals(Category.Terminal)) {
-                Log.i(TAG, "Terminal=>" + value.getTitle() + " " + value.getLatitude() + " " + value.getLongtitude());
-                Marker marker = new IconMarker(value.getTitle(), value.getLatitude(), value.getLongtitude(), 0,
-                        Color.TRANSPARENT, iconBus);
-                cachedMarkers.add(marker);
-            } else if (value.getCategory().equals(Category.Station)) {
-                Log.i(TAG, "Station=>" + value.getTitle() + " " + value.getLatitude() + " " + value.getLongtitude());
-                Marker marker = new IconMarker(value.getTitle(), value.getLatitude(), value.getLongtitude(), 0,
-                        Color.TRANSPARENT, iconTrain);
-                cachedMarkers.add(marker);
-            } else if (value.getCategory().equals(Category.Hotel)) {
-                Log.i(TAG, "Hotel=>" + value.getTitle() + " " + value.getLatitude() + " " + value.getLongtitude());
-                Marker marker = new IconMarker(value.getTitle(), value.getLatitude(), value.getLongtitude(), 0,
-                        Color.TRANSPARENT, iconHotel);
-                cachedMarkers.add(marker);
-            } else if (value.getCategory().equals(Category.Beach)) {
-                Log.i(TAG, "Beach=>" + value.getTitle() + " " + value.getLatitude() + " " + value.getLongtitude());
-                Marker marker = new IconMarker(value.getTitle(), value.getLatitude(), value.getLongtitude(), 0,
-                        Color.TRANSPARENT, iconBeach);
-                cachedMarkers.add(marker);
-            } else if (value.getCategory().equals(Category.Palace)) {
-                Log.i(TAG, "Palace=>" + value.getTitle() + " " + value.getLatitude() + " " + value.getLongtitude());
-                Marker marker = new IconMarker(value.getTitle(), value.getLatitude(), value.getLongtitude(), 0,
-                        Color.TRANSPARENT, iconPalace);
-                cachedMarkers.add(marker);
-            } else if (value.getCategory().equals(Category.Museum)) {
-                Log.i(TAG, "Museum=>" + value.getTitle() + " " + value.getLatitude() + " " + value.getLongtitude());
-                Marker marker = new IconMarker(value.getTitle(), value.getLatitude(), value.getLongtitude(), 0,
-                        Color.TRANSPARENT, iconMuseum);
-                cachedMarkers.add(marker);
-            } else if (value.getCategory().equals(Category.Nature)) {
-                Log.i(TAG, "Nature=>" + value.getTitle() + " " + value.getLatitude() + " " + value.getLongtitude());
-                Marker marker = new IconMarker(value.getTitle(), value.getLatitude(), value.getLongtitude(), 0,
-                        Color.TRANSPARENT, iconNature);
-                cachedMarkers.add(marker);
-            } else if (value.getCategory().equals(Category.Gas)) {
-                Log.i(TAG, "Gas Station=>" + value.getTitle() + " " + value.getLatitude() + " " + value.getLongtitude());
-                Marker marker = new IconMarker(value.getTitle(), value.getLatitude(), value.getLongtitude(), 0,
-                        Color.TRANSPARENT, iconGasStation);
-                cachedMarkers.add(marker);
-            } else if (value.getCategory().equals(Category.Mosque)) {
-                Log.i(TAG, "Mosque=>" + value.getTitle() + " " + value.getLatitude() + " " + value.getLongtitude());
-                Marker marker = new IconMarker(value.getTitle(), value.getLatitude(), value.getLongtitude(), 0,
-                        Color.TRANSPARENT, iconMosque);
-                cachedMarkers.add(marker);
-            } else if (value.getCategory().equals(Category.ATM)) {
-                Log.i(TAG, "ATM=>" + value.getTitle() + " " + value.getLatitude() + " " + value.getLongtitude());
-                Marker marker = new IconMarker(value.getTitle(), value.getLatitude(), value.getLongtitude(), 0,
-                        Color.TRANSPARENT, iconATM);
-                cachedMarkers.add(marker);
-            } else if (value.getCategory().equals(Category.Qiblat)) {
-                Log.i(TAG, "Qiblat=>" + value.getTitle() + " " + value.getLatitude() + " " + value.getLongtitude());
-                Marker marker = new IconMarker(value.getTitle(), value.getLatitude(), value.getLongtitude(), 0,
-                        Color.TRANSPARENT, iconKaaba);
-                cachedMarkers.add(marker);
+            if (position == 1) {
+                Log.i(TAG, "value=>" + value.getIdLocation() + " " + value.getTitle() + " " + value.getAddress());
+                if (value.getCategory().equals(Category.Hotel)) {
+                    Log.i(TAG, "Hotel=>" + value.getTitle() + " " + value.getLatitude() + " " + value.getLongtitude());
+                    Marker marker = new IconMarker(value.getTitle(), value.getLatitude(), value.getLongtitude(), 0,
+                            Color.TRANSPARENT, iconHotel);
+                    cachedMarkers.add(marker);
+                }
+            } else if (position == 2) {
+                Log.i(TAG, "value=>" + value.getIdLocation() + " " + value.getTitle() + " " + value.getAddress());
+                if (value.getCategory().equals(Category.Airport)) {
+                    Log.i(TAG, "Airport=>" + value.getTitle() + " " + value.getLatitude() + " " + value.getLongtitude());
+                    Marker marker = new IconMarker(value.getTitle(), value.getLatitude(), value.getLongtitude(), 0,
+                            Color.TRANSPARENT, iconAirport);
+                    cachedMarkers.add(marker);
+                }
+            } else if (position == 3) {
+                Log.i(TAG, "value=>" + value.getIdLocation() + " " + value.getTitle() + " " + value.getAddress());
+                if (value.getCategory().equals(Category.Station)) {
+                    Log.i(TAG, "Station=>" + value.getTitle() + " " + value.getLatitude() + " " + value.getLongtitude());
+                    Marker marker = new IconMarker(value.getTitle(), value.getLatitude(), value.getLongtitude(), 0,
+                            Color.TRANSPARENT, iconTrain);
+                    cachedMarkers.add(marker);
+                }
+            } else if (position == 4) {
+                Log.i(TAG, "value=>" + value.getIdLocation() + " " + value.getTitle() + " " + value.getAddress());
+                if (value.getCategory().equals(Category.Terminal)) {
+                    Log.i(TAG, "Terminal=>" + value.getTitle() + " " + value.getLatitude() + " " + value.getLongtitude());
+                    Marker marker = new IconMarker(value.getTitle(), value.getLatitude(), value.getLongtitude(), 0,
+                            Color.TRANSPARENT, iconBus);
+                    cachedMarkers.add(marker);
+                }
+            } else if (position == 5) {
+                Log.i(TAG, "value=>" + value.getIdLocation() + " " + value.getTitle() + " " + value.getAddress());
+                if (value.getCategory().equals(Category.Temple)) {
+                    Log.i(TAG, "Temple=>" + value.getTitle() + " " + value.getLatitude() + " " + value.getLongtitude());
+                    Marker marker = new IconMarker(value.getTitle(), value.getLatitude(), value.getLongtitude(), 0,
+                            Color.TRANSPARENT, iconTemple);
+                    cachedMarkers.add(marker);
+                }
+            } else if (position == 6) {
+                Log.i(TAG, "value=>" + value.getIdLocation() + " " + value.getTitle() + " " + value.getAddress());
+                if (value.getCategory().equals(Category.Beach)) {
+                    Log.i(TAG, "Beach=>" + value.getTitle() + " " + value.getLatitude() + " " + value.getLongtitude());
+                    Marker marker = new IconMarker(value.getTitle(), value.getLatitude(), value.getLongtitude(), 0,
+                            Color.TRANSPARENT, iconBeach);
+                    cachedMarkers.add(marker);
+                }
+            } else if (position == 7) {
+                Log.i(TAG, "value=>" + value.getIdLocation() + " " + value.getTitle() + " " + value.getAddress());
+                if (value.getCategory().equals(Category.Palace)) {
+                    Log.i(TAG, "Palace=>" + value.getTitle() + " " + value.getLatitude() + " " + value.getLongtitude());
+                    Marker marker = new IconMarker(value.getTitle(), value.getLatitude(), value.getLongtitude(), 0,
+                            Color.TRANSPARENT, iconPalace);
+                    cachedMarkers.add(marker);
+                }
+            } else if (position == 8) {
+                Log.i(TAG, "value=>" + value.getIdLocation() + " " + value.getTitle() + " " + value.getAddress());
+                if (value.getCategory().equals(Category.Museum)) {
+                    Log.i(TAG, "Museum=>" + value.getTitle() + " " + value.getLatitude() + " " + value.getLongtitude());
+                    Marker marker = new IconMarker(value.getTitle(), value.getLatitude(), value.getLongtitude(), 0,
+                            Color.TRANSPARENT, iconMuseum);
+                    cachedMarkers.add(marker);
+                }
+            } else if (position == 9) {
+                Log.i(TAG, "value=>" + value.getIdLocation() + " " + value.getTitle() + " " + value.getAddress());
+                if (value.getCategory().equals(Category.Nature)) {
+                    Log.i(TAG, "Nature=>" + value.getTitle() + " " + value.getLatitude() + " " + value.getLongtitude());
+                    Marker marker = new IconMarker(value.getTitle(), value.getLatitude(), value.getLongtitude(), 0,
+                            Color.TRANSPARENT, iconNature);
+                    cachedMarkers.add(marker);
+                }
+            } else if (position == 10) {
+                Log.i(TAG, "value=>" + value.getIdLocation() + " " + value.getTitle() + " " + value.getAddress());
+                if (value.getCategory().equals(Category.Gas)) {
+                    Log.i(TAG, "Gas Station=>" + value.getTitle() + " " + value.getLatitude() + " " + value.getLongtitude());
+                    Marker marker = new IconMarker(value.getTitle(), value.getLatitude(), value.getLongtitude(), 0,
+                            Color.TRANSPARENT, iconGasStation);
+                    cachedMarkers.add(marker);
+                }
+            } else if (position == 11) {
+                Log.i(TAG, "value=>" + value.getIdLocation() + " " + value.getTitle() + " " + value.getAddress());
+                if (value.getCategory().equals(Category.Mosque)) {
+                    Log.i(TAG, "Mosque=>" + value.getTitle() + " " + value.getLatitude() + " " + value.getLongtitude());
+                    Marker marker = new IconMarker(value.getTitle(), value.getLatitude(), value.getLongtitude(), 0,
+                            Color.TRANSPARENT, iconMosque);
+                    cachedMarkers.add(marker);
+                }
+            } else if (position == 12) {
+                Log.i(TAG, "value=>" + value.getIdLocation() + " " + value.getTitle() + " " + value.getAddress());
+                if (value.getCategory().equals(Category.ATM)) {
+                    Log.i(TAG, "ATM=>" + value.getTitle() + " " + value.getLatitude() + " " + value.getLongtitude());
+                    Marker marker = new IconMarker(value.getTitle(), value.getLatitude(), value.getLongtitude(), 0,
+                            Color.TRANSPARENT, iconATM);
+                    cachedMarkers.add(marker);
+                }
+            } else {
+                Log.i(TAG, "value=>" + value.getIdLocation() + " " + value.getTitle() + " " + value.getAddress());
+                if (value.getCategory().equals(Category.Temple)) {
+                    Log.i(TAG, "Temple=>" + value.getTitle() + " " + value.getLatitude() + " " + value.getLongtitude());
+                    Marker marker = new IconMarker(value.getTitle(), value.getLatitude(), value.getLongtitude(), 0,
+                            Color.TRANSPARENT, iconTemple);
+                    cachedMarkers.add(marker);
+                } else if (value.getCategory().equals(Category.Airport)) {
+                    Log.i(TAG, "Airport=>" + value.getTitle() + " " + value.getLatitude() + " " + value.getLongtitude());
+                    Marker marker = new IconMarker(value.getTitle(), value.getLatitude(), value.getLongtitude(), 0,
+                            Color.TRANSPARENT, iconAirport);
+                    cachedMarkers.add(marker);
+                } else if (value.getCategory().equals(Category.Terminal)) {
+                    Log.i(TAG, "Terminal=>" + value.getTitle() + " " + value.getLatitude() + " " + value.getLongtitude());
+                    Marker marker = new IconMarker(value.getTitle(), value.getLatitude(), value.getLongtitude(), 0,
+                            Color.TRANSPARENT, iconBus);
+                    cachedMarkers.add(marker);
+                } else if (value.getCategory().equals(Category.Station)) {
+                    Log.i(TAG, "Station=>" + value.getTitle() + " " + value.getLatitude() + " " + value.getLongtitude());
+                    Marker marker = new IconMarker(value.getTitle(), value.getLatitude(), value.getLongtitude(), 0,
+                            Color.TRANSPARENT, iconTrain);
+                    cachedMarkers.add(marker);
+                } else if (value.getCategory().equals(Category.Hotel)) {
+                    Log.i(TAG, "Hotel=>" + value.getTitle() + " " + value.getLatitude() + " " + value.getLongtitude());
+                    Marker marker = new IconMarker(value.getTitle(), value.getLatitude(), value.getLongtitude(), 0,
+                            Color.TRANSPARENT, iconHotel);
+                    cachedMarkers.add(marker);
+                } else if (value.getCategory().equals(Category.Beach)) {
+                    Log.i(TAG, "Beach=>" + value.getTitle() + " " + value.getLatitude() + " " + value.getLongtitude());
+                    Marker marker = new IconMarker(value.getTitle(), value.getLatitude(), value.getLongtitude(), 0,
+                            Color.TRANSPARENT, iconBeach);
+                    cachedMarkers.add(marker);
+                } else if (value.getCategory().equals(Category.Palace)) {
+                    Log.i(TAG, "Palace=>" + value.getTitle() + " " + value.getLatitude() + " " + value.getLongtitude());
+                    Marker marker = new IconMarker(value.getTitle(), value.getLatitude(), value.getLongtitude(), 0,
+                            Color.TRANSPARENT, iconPalace);
+                    cachedMarkers.add(marker);
+                } else if (value.getCategory().equals(Category.Museum)) {
+                    Log.i(TAG, "Museum=>" + value.getTitle() + " " + value.getLatitude() + " " + value.getLongtitude());
+                    Marker marker = new IconMarker(value.getTitle(), value.getLatitude(), value.getLongtitude(), 0,
+                            Color.TRANSPARENT, iconMuseum);
+                    cachedMarkers.add(marker);
+                } else if (value.getCategory().equals(Category.Nature)) {
+                    Log.i(TAG, "Nature=>" + value.getTitle() + " " + value.getLatitude() + " " + value.getLongtitude());
+                    Marker marker = new IconMarker(value.getTitle(), value.getLatitude(), value.getLongtitude(), 0,
+                            Color.TRANSPARENT, iconNature);
+                    cachedMarkers.add(marker);
+                } else if (value.getCategory().equals(Category.Gas)) {
+                    Log.i(TAG, "Gas Station=>" + value.getTitle() + " " + value.getLatitude() + " " + value.getLongtitude());
+                    Marker marker = new IconMarker(value.getTitle(), value.getLatitude(), value.getLongtitude(), 0,
+                            Color.TRANSPARENT, iconGasStation);
+                    cachedMarkers.add(marker);
+                } else if (value.getCategory().equals(Category.Mosque)) {
+                    Log.i(TAG, "Mosque=>" + value.getTitle() + " " + value.getLatitude() + " " + value.getLongtitude());
+                    Marker marker = new IconMarker(value.getTitle(), value.getLatitude(), value.getLongtitude(), 0,
+                            Color.TRANSPARENT, iconMosque);
+                    cachedMarkers.add(marker);
+                } else if (value.getCategory().equals(Category.ATM)) {
+                    Log.i(TAG, "ATM=>" + value.getTitle() + " " + value.getLatitude() + " " + value.getLongtitude());
+                    Marker marker = new IconMarker(value.getTitle(), value.getLatitude(), value.getLongtitude(), 0,
+                            Color.TRANSPARENT, iconATM);
+                    cachedMarkers.add(marker);
+                }
             }
         }
 
