@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -34,6 +35,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolylineOptions;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -185,6 +187,20 @@ public class HomeActivity extends Activity {
             LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
             map.setMyLocationEnabled(true);
             map.animateCamera(CameraUpdateFactory.newLatLng(latLng));
+
+
+//            Polyline newPolyline;
+//            GoogleMap mMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
+//            PolylineOptions rectLine = new PolylineOptions().width(3).color(Color.BLUE);
+//            for(int i = 0 ; i < directionPoints.size() ; i++)
+//            {
+//                rectLine.add(directionPoints.get(i));
+//            }
+//            newPolyline = mMap.addPolyline(rectLine);
+
+            PolylineOptions polylineOptions = new PolylineOptions().color(Color.RED).width(5);
+            map.addPolyline(new PolylineOptions().add(new LatLng(-37.81319, 144.96298), new LatLng(-31.95285, 115.85734))
+                    .geodesic(true).color(Color.RED).width(5));
         }
     };
 
