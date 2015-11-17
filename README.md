@@ -1,5 +1,4 @@
 ### YogyakartaTour
-===================
 
 [![Apache Maven](https://img.shields.io/badge/gradle-2.2.1-blue.svg)](http://gradle.org/)
 [![Version](https://img.shields.io/badge/version-1.0-00CED1.svg)](https://github.com/dynastymasra/YogyakartaTour)
